@@ -1,0 +1,107 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors  (DGF)
+ * @date    2016-11-27
+ * @version $Id$
+*/
+/*宽度变量*/
+$mainW: 90%;
+$halfW: 50%;
+/*高度变量*/
+/*margin类*/
+$centerM: 0 auto;
+/*padding类*/
+/*边框变量*/
+/*$fourBorder: 1px solid red;*/
+@mixin fourBorder($linesize, $linestyle, $linecolor) {
+	border: $linesize $linestyle $linecolor;
+}
+@mixin borBottom($linesize, $linestyle, $linecolor) {
+	border-bottom: $linesize $linestyle $linecolor;
+}
+/*颜色变量*/
+/*全局边框颜色*/
+$color_1: red;
+/*字体大小*/
+$fs24: 24px;
+$fs20: 20px;
+$fs18: 18px;
+$fs16: 16px;
+$fs14: 14px;
+
+.main {
+	width: $mainW;
+	margin: $centerM;
+	/*border: $fourBorder;*/
+	@include fourBorder(1px, solid, $color_1);
+}
+.h2-title {
+	margin-bottom: 10px;
+	padding: 10px;
+	@include borBottom(1px, solid, $color_1);
+	font-size: $fs24;
+	text-align: center;
+}
+.h3-title {
+	padding: 10px;
+	/*padding: 5px 0;*/
+	background: rgba(151, 153, 255, 0.2);
+	font-size: $fs18;
+	text-align: center;
+}
+.h4-title {
+	padding-bottom: 10px;
+	font-size: $fs16;
+}
+.study-content {
+	padding: 10px 0;
+}
+.articl {
+	margin-bottom: 10px;
+
+}
+.notes-content,
+.title-style,
+.demos-content {
+	padding: 10px;
+}
+.n-dcom {
+	float: left;
+	width: 46%;
+	margin: 0 2%;
+	background: rgba(51, 153, 255, 0.1);
+	border-radius: 5px;
+}
+
+.knowledge-point {
+	padding: 10px;
+	background: rgba(151, 153, 255, 0.2);
+	border-radius: 5px;
+}
+.h4-ol li {
+	margin-bottom: 8px;
+	list-style: decimal inside;
+}
+.demos-content {
+	height: 100%;
+}
+
+@media screen and (max-device-width: 600px) {
+	.wrap {
+		min-width: 450px;
+		font-size: 1.35rem;
+	}
+	.h2-title {
+		font-size: 2rem;
+	}
+	.h4-title {
+		font-size: 1.6rem;
+	}
+	.notes-type {
+		display: none;
+	}
+	.n-dcom {
+		width: 96%;
+	}
+}
