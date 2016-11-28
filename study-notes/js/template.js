@@ -7,14 +7,19 @@
 $(function() {
 	// 保持知识点与示例效果的高度一致
 	function sameHeight() {
-		var kph = $(".notes-content .knowledge-point").height(),
-			kphs = $(".demos-content .knowledge-point").height(),
+		var kph = $(".notes-content .knowledge-point"),
+			kphs = $(".demos-content .knowledge-point"),
 			wrapw = $(".wrap").width()
+		// for(var i = 0; i < kph.length; i++) {
+		// 	kphs.eq(i).css({"minHeight": kph.eq(i).height()})
+		// }
 		if(wrapw > 770) {
-			if(kph > kphs) {
-				$(".demos-content .knowledge-point").css({"minHeight": kph});
-			} else {
-				$(".notes-content .knowledge-point").css({"minHeight": kphs})
+			for(var i = 0; i < kph.length; i++) {
+				if(kph.eq(i).height() > kphs.eq(i).height()) {
+					kphs.eq(i).css({"minHeight": kph.eq(i).height()})
+				} else {
+					kph.eq(i).css({"minHeight": kphs.eq(i).height()})
+				}
 			}
 		} else {
 			$(".demos-content .knowledge-point, .notes-content .knowledge-point").css({"minHeight": 0})
@@ -26,6 +31,5 @@ $(function() {
 	$(window).resize(function() {
 		sameHeight()
 	})
-	
 	
 })
