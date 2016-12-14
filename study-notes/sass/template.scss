@@ -99,6 +99,16 @@ $fs14: 14px;
 .demos-content {
 	height: 100%;
 }
+.paragraph {
+	p {
+		margin-bottom: 5px;
+		text-indent: 2em;
+	}
+}
+.code-type {
+	padding: 5px 0;
+	color: blue;
+}
 
 @media screen and (max-width: 770px) {
 	.wrap {
@@ -115,5 +125,11 @@ $fs14: 14px;
 	}
 	.n-dcom {
 		width: 96%;
+	}
+	.h4-ul {
+		li {
+			height: 1.67rem;
+			line-height: 1.67rem;
+		}
 	}
 }
