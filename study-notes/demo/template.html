@@ -100,7 +100,8 @@
 						<div class="demos n-dcom">
 							<div class="demos-content">
 								<div  class="knowledge-point">
-									
+									<input type="file" name="file" onchange="showpreview(this)">
+									<img id="portrait" src="" alt="" width="70" height="75">
 								</div>
 							</div>
 						</div>
@@ -133,12 +134,29 @@
     	}, false)
 
     	// FileReader 对象
-    	var reader = new FileReader();
-
-    	reader.onload = function(e){
-    	    console.log(e.target.result);
+    	// 浏览器检查
+    	if(window.FileReader) {
+    		var reader = new FileReader();
+    		console.log(666)
+    	} else {
+    		console.log("不支持")
     	}
+    	
 
+    	// reader.onload = function(e){
+    	//     console.log(e.target.result);
+    	// }
+    	function showpreview(source) {
+    		var file = source.files[0];
+    		if(window.FileReader) {
+	    		var reader = new FileReader();
+	    		reader.onload = function(event) {
+	    			document.getElementById("portrait").src = event.target.result
+	    		}
+	    		reader.readAsDataURL(file)
+	    	} 
+
+    	}
     </script>
 </body>
 </html>
