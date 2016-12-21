@@ -36,11 +36,18 @@
 								<div class="knowledge-point">
 									<h4 class="h4-title">FileList对象</h4>
 									<ol class="h4-ol">
-										<li>FileList对象针对表单的file类型的，file控件的files属性就是FileList对象</li>
+										<li>FileList对象针对表单的file类型的，file控件的files属性就是FileList对象；</li>
 										<li>
-											files[0]中有：name,size,type, lastModifiedDate
+											<ul class="sec-li">
+												files[0]中有：
+												<li>name（文件吗，该属性只读）,</li>
+												<li>size（文件大小，单位为字节，该属性只读）,</li>
+												<li>type（文件的MIME类型，如果分辨不出类型，则为空字符串，该属性只读。）, </li>
+												<li>lastModifiedDate（文件的上次修改时间，该属性只读。）等属性。</li>
+											</ul>
 										</li>
-										<li><a href="http://www.cnblogs.com/jscode/archive/2013/04/27/3572239.html">点击参考文件</a></li>
+										<li>要上传的文件拖放到file控件也可以得到FileList对象</li>
+										<li>event参数的dataTransfer.files属性就是一个FileList对象，里面包含了拖放的文件。</li>
 									</ol>
 								</div>
 							</div>
@@ -50,7 +57,7 @@
 								<div class="knowledge-point">
 									<ol class="h4-ol">
 									<li>
-										<input id="demos" type="file">
+										<input id="demos" type="file" multiple>
 										上传文件，查看结果
 									</li>
 										<li class="result"></li>
@@ -65,10 +72,27 @@
 						<div class="notes n-dcom">
 							<div class="notes-content">
 								<div class="knowledge-point">
-									<h4 class="h4-title">简介</h4>
+									<h4 class="h4-title">FileReader 对象</h4>
+									<div class="paragraph">
+										<p>FileReader对象接收File对象或Blob对象作为参数，用于读取文件的实际内容，即把文件内容读入内存。对于不同类型的文件，FileReader使用不同的方法读取。</p>
+									</div>
 									<ol class="h4-ol">
-										<li>Vue.js（读音 /vjuː/, 类似于 view）是一套构件用户界面的渐进式框架，采用自底向上增量开发设计，核心库只关注视图层</li>
-										<li>Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。</li>
+										<li>FileReader.readAsBinaryString(Blob|File) ：读取结果为二进制字符串，每个字节包含一个0到255之间的整数。</li>
+										<li>FileReader.readAsText(Blob|File, opt_encoding) ：读取结果是一个文本字符串。默认情况下，文本编码格式是'UTF-8'，可以通过可选的格式参数，指定其他编码格式的文本。</li>
+										<li>FileReader.readAsDataURL(Blob|File) ： 读取结果是一个基于Base64编码的 data-uri 对象。</li>
+										<li>FileReader.readAsArrayBuffer(Blob|File) ：读取结果是一个 ArrayBuffer 对象。</li>
+									</ol>
+									<div class="paragraph">
+										<p>FileReader采用异步方式读取文件，可以为一系列事件指定回调函数。</p>
+									</div>
+									<ol class="h4-ol">
+										<li>onabort：读取中断或调用reader.abort()方法时触发。</li>
+										<li>onerror：读取出错时触发。</li>
+										<li>onload：读取成功后触发。</li>
+										<li>onloadend：读取完成后触发，不管是否成功。触发顺序排在 onload 或 onerror 后面。</li>
+										<li>onloadstart：读取将要开始时触发。</li>
+										<li>onprogress：读取过程中周期性触发。</li>
+										<li><a href="http://www.cnblogs.com/jscode/archive/2013/04/27/3572239.html">点击继续未学完文章</a></li>
 									</ol>
 								</div>
 							</div>
@@ -91,13 +115,30 @@
     <script charset="utf-8" src="../js/common.js" type="text/javascript"></script>
     <script charset="utf-8" src="../js/template.js" type="text/javascript"></script>
     <script type="text/javascript">
+    	// FileList对象
     	var demo = document.getElementById("demos")
     	demo.addEventListener("change", function(event) {
     		$(".result").text(demo.files)
     		$(".result1").text(demo.files[0])
     		console.log( demo.files)
     		console.log( demo.files[0])
-    	})
+    	}, false)
+    	demo.addEventListener("drop", function(event) {
+    		// 阻止冒泡
+    		event.stopPropagation();
+    		// 阻止默认事件（change不会触发）
+		    event.preventDefault();
+		    var files = event.dataTransfer.files;
+		    console.log(files)
+    	}, false)
+
+    	// FileReader 对象
+    	var reader = new FileReader();
+
+    	reader.onload = function(e){
+    	    console.log(e.target.result);
+    	}
+
     </script>
 </body>
 </html>

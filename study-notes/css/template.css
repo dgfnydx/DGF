@@ -70,7 +70,7 @@
   border-radius: 5px;
 }
 
-.h4-ol li {
+.h4-ol>li {
   margin-bottom: 8px;
   list-style: decimal inside;
 }
@@ -88,7 +88,11 @@
 .h4-ul li:nth-child(2n) {
   background: rgba(0, 0, 0, 0.5);
 }
-
+.sec-li>li {
+  padding-left: 5px;
+  list-style: circle inside;
+  text-indent: 2em;
+}
 .demos-content {
   height: 100%;
 }
