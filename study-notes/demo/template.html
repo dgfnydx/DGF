@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>demo</title>
+    <title>input中file类型的一些对象属性</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <link rel="icon" href="" type="image/x-icon">
     <link rel="stylesheet" href="../css/reset.css" type="text/css">
@@ -16,7 +16,7 @@
 		<div class="main">
 			<!-- 章 -->
 			<div class="section">
-				<h2 class="h2-title">demo</h2>
+				<h2 class="h2-title">input中file类型的一些对象属性</h2>
 				<div class="notes-type clearfix">
 					<div class="n-dcom">
 						<div class="title-style">
@@ -92,6 +92,7 @@
 										<li>onloadend：读取完成后触发，不管是否成功。触发顺序排在 onload 或 onerror 后面。</li>
 										<li>onloadstart：读取将要开始时触发。</li>
 										<li>onprogress：读取过程中周期性触发。</li>
+										<li>读取大文件的时候，可以利用Blob对象的slice方法，将大文件分成小段，逐一读取，这样可以加快处理速度。</li>
 										<li><a href="http://www.cnblogs.com/jscode/archive/2013/04/27/3572239.html">点击继续未学完文章</a></li>
 									</ol>
 								</div>
@@ -100,7 +101,7 @@
 						<div class="demos n-dcom">
 							<div class="demos-content">
 								<div  class="knowledge-point">
-									<input type="file" name="file" onchange="showpreview(this)">
+									<input type="file" name="file" class="file-reader">
 									<img id="portrait" src="" alt="" width="70" height="75">
 								</div>
 							</div>
@@ -117,46 +118,61 @@
     <script charset="utf-8" src="../js/template.js" type="text/javascript"></script>
     <script type="text/javascript">
     	// FileList对象
-    	var demo = document.getElementById("demos")
-    	demo.addEventListener("change", function(event) {
-    		$(".result").text(demo.files)
-    		$(".result1").text(demo.files[0])
-    		console.log( demo.files)
-    		console.log( demo.files[0])
-    	}, false)
-    	demo.addEventListener("drop", function(event) {
-    		// 阻止冒泡
-    		event.stopPropagation();
-    		// 阻止默认事件（change不会触发）
-		    event.preventDefault();
-		    var files = event.dataTransfer.files;
-		    console.log(files)
-    	}, false)
+    	(function() {
+	    	var demo = document.getElementById("demos")
+	    	demo.addEventListener("change", function(event) {
+	    		$(".result").text(demo.files)
+	    		$(".result1").text(demo.files[0])
+	    		console.log( demo.files)
+	    		console.log( demo.files[0])
+	    	}, false)
+	    	demo.addEventListener("drop", function(event) {
+	    		// 阻止冒泡
+	    		event.stopPropagation();
+	    		// 阻止默认事件（change不会触发）
+			    event.preventDefault();
+			    var files = event.dataTransfer.files;
+			    console.log(files)
+	    	}, false)
+    		
+    	})();
 
     	// FileReader 对象
-    	// 浏览器检查
-    	if(window.FileReader) {
-    		var reader = new FileReader();
-    		console.log(666)
-    	} else {
-    		console.log("不支持")
-    	}
-    	
-
-    	// reader.onload = function(e){
-    	//     console.log(e.target.result);
-    	// }
-    	function showpreview(source) {
-    		var file = source.files[0];
-    		if(window.FileReader) {
-	    		var reader = new FileReader();
-	    		reader.onload = function(event) {
-	    			document.getElementById("portrait").src = event.target.result
+    	(function() {
+    		$(".file-reader").change(function() {
+    			showpreview(this)
+    		})
+	    	function showpreview(source) {
+	    		var file = source.files[0];
+	    		var typeReg = /image\/\w+/;
+	    		// 上传格式限制
+	    		if(!typeReg.test(file.type)) {
+	    			alert("请确保上传的是图片类型")
+	    			return false;
+	    		} else {
+		    		// 浏览器检查
+		    		if(window.FileReader) {
+			    		var reader = new FileReader();
+			    		reader.readAsDataURL(file)
+			    		reader.onload = function(event) {
+			    			document.getElementById("portrait").src = event.target.result
+			    		}
+			    		// onprogress事件,加载进度条
+			    		reader.onprogress = updateProgress;
+			    		function updateProgress(event) {
+			    		    if (event.lengthComputable) {
+			    		      var percentLoaded = Math.round((event.loaded / event.total) * 100) + "%";
+			    		      console.log(percentLoaded)
+			    		      
+			    		    }
+			    		}
+			    	} else{
+			    		alert("不支持！！！")
+			    	}
 	    		}
-	    		reader.readAsDataURL(file)
-	    	} 
-
-    	}
+	    		console.log(file.type)
+	    	}
+    	})();
     </script>
 </body>
 </html>
