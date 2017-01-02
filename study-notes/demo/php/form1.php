@@ -27,6 +27,7 @@
             {
                 $name = test_input($_POST["name"]);
                 // 检测名字是否只包含字母跟空格
+                // preg_match — 进行正则表达式匹配。
                 if (!preg_match("/^[a-zA-Z ]*$/",$name))
                 {
                     $nameErr = "只允许字母和空格"; 
