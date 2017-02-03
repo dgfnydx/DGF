@@ -6,7 +6,7 @@
  * @version $Id$
 */
 /*宽度变量*/
-$mainW: 90%;
+$mainW: 70%;
 $halfW: 50%;
 /*高度变量*/
 /*margin类*/
@@ -52,28 +52,23 @@ $fs14: 14px;
 }
 .h4-title {
 	padding-bottom: 10px;
-	font-size: $fs16;
+	font-size: $fs18;
 }
 .study-content {
 	padding: 10px 0;
 }
-.articl {
-	margin-bottom: 10px;
-
-}
 .notes-content,
-.title-style,
 .demos-content {
 	padding: 10px;
 }
 .n-dcom {
-	float: left;
-	width: 46%;
 	margin: 0 2%;
 	background: rgba(51, 153, 255, 0.3);
 	border-radius: 5px;
 }
-
+.notes {
+	margin-top: 10px;
+}
 .knowledge-point {
 	padding: 10px;
 	background: rgba(151, 153, 255, 0.2);
@@ -114,26 +109,26 @@ $fs14: 14px;
 }
 
 
-@media screen and (max-width: 770px) {
-	.wrap {
-		font-size: 1rem;
-	}
-	.h2-title {
-		font-size: 1.5rem;
-	}
-	.h4-title {
-		font-size: 1.3rem;
-	}
-	.notes-type {
-		display: none;
-	}
-	.n-dcom {
-		width: 96%;
-	}
-	.h4-ul {
-		li {
-			height: 1.67rem;
-			line-height: 1.67rem;
-		}
-	}
-}
+// @media screen and (max-width: 770px) {
+// 	.wrap {
+// 		font-size: 1rem;
+// 	}
+// 	.h2-title {
+// 		font-size: 1.5rem;
+// 	}
+// 	.h4-title {
+// 		font-size: 1.3rem;
+// 	}
+// 	.notes-type {
+// 		display: none;
+// 	}
+// 	.n-dcom {
+// 		width: 96%;
+// 	}
+// 	.h4-ul {
+// 		li {
+// 			height: 1.67rem;
+// 			line-height: 1.67rem;
+// 		}
+// 	}
+// }

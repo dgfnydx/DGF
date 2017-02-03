@@ -15,7 +15,7 @@
 /*全局边框颜色*/
 /*字体大小*/
 .main {
-  width: 90%;
+  width: 70%;
   margin: 0 auto;
   /*border: $fourBorder;*/
   border: 1px solid red;
@@ -39,29 +39,26 @@
 
 .h4-title {
   padding-bottom: 10px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .study-content {
   padding: 10px 0;
 }
 
-.articl {
-  margin-bottom: 10px;
-}
-
 .notes-content,
-.title-style,
 .demos-content {
   padding: 10px;
 }
 
 .n-dcom {
-  float: left;
-  width: 46%;
   margin: 0 2%;
   background: rgba(51, 153, 255, 0.3);
   border-radius: 5px;
+}
+
+.notes {
+  margin-top: 10px;
 }
 
 .knowledge-point {
@@ -107,26 +104,4 @@
 .code-type {
   padding: 5px 0;
   color: blue;
-}
-
-@media screen and (max-width: 770px) {
-  .wrap {
-    font-size: 1rem;
-  }
-  .h2-title {
-    font-size: 1.5rem;
-  }
-  .h4-title {
-    font-size: 1.3rem;
-  }
-  .notes-type {
-    display: none;
-  }
-  .n-dcom {
-    width: 96%;
-  }
-  .h4-ul li {
-    height: 1.67rem;
-    line-height: 1.67rem;
-  }
 }

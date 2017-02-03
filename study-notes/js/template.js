@@ -34,3 +34,4 @@ $(function() {
 	
 	
 })
+console.log($(".notes").next(".demos"))
