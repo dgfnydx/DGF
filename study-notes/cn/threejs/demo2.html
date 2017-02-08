@@ -1,0 +1,130 @@
+<html>
+	<head>
+		<title>demo2函数为对象的方法</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+	</head>
+	<body>
+		<script src="../../js/three/three.js"></script>
+		<script src="../../js/three/controls/OrbitControls.js"></script>
+		<script src="../../js/three/loader/MTLLoader.js"></script>
+		<script src="../../js/three/loader/OBJLoader.js"></script>
+		<!-- <script src="../../js/loader/FBXLoader.js"></script> -->
+		<script>
+			var module = {
+				scene: null,
+				camera: null,
+				renderer: null,
+				geometry: null,
+				material: null,
+				cube: null,
+				gridHelper: null,
+				light: null,
+				controls: null,
+				// 场景
+				initScene: function() {
+					this.scene = new THREE.Scene();
+				},
+				// 相机
+				initCamera: function() {
+					// 透视相机
+					this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth/window.innerHeight, 1, 10000 );
+					// 设置相机的坐标
+					// this.camera.position.y = 5;
+					// this.camera.position.z = 5;
+					this.camera.position.set(5, 5, 0)
+				},
+				// 渲染器
+				initRenderer: function() {
+					this.renderer = new THREE.WebGLRenderer({antialias : true});
+					this.renderer.setSize( window.innerWidth, window.innerHeight );
+					this.renderer.setClearColor(0xffffff, 1);//(原色，透明度)
+					document.body.appendChild( this.renderer.domElement );
+				},
+				// 物体
+				initCube: function() {
+					this.geometry = new THREE.BoxGeometry( 3, 3, 3,2,2,2 );//(width, height, dept, widthSegments, heightSegments, depthSegments)
+					var crateTexture = new THREE.ImageUtils.loadTexture("../../images/demo/jingtian2.jpg"); 
+					this.material = new THREE.MeshBasicMaterial({//基本材质
+						// color: 0xff0000,
+						map: crateTexture,
+						wireframe : false//wireframe线模式渲染
+					});
+					// this.material = new THREE.MeshNormalMaterial({此材质根据物体表面法向量计算颜色
+					// 	wireframe : false//wireframe线模式渲染
+					// });
+					this.cube = new THREE.Mesh( this.geometry, this.material );
+					this.scene.add( this.cube );
+				},
+				// 网格
+				initGrid: function() {
+					this.gridHelper = new THREE.GridHelper(2, 50, 0xff00ff, 0x808080);
+					this.scene.add(this.gridHelper);
+				},
+				// 光线
+				initLight: function() {
+					this.light = new THREE.AmbientLight(0xffffff);
+	                this.light.position.set(0, 0, 1);
+	                this.scene.add(this.light);
+				},
+				// 控制器
+				initCtr: function() {
+					this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
+					this.controls.dampingFactor = 0.25;
+				},
+				start: function() {
+					this.initScene();
+					this.initCamera();
+					this.initRenderer();	
+					this.initCube();
+					// initModel()	
+					this.initLight();
+					this.initCtr();
+					// this.initGrid();
+				}
+			}
+			module.start()
+
+			
+			function initModel() {
+				// 材质
+				// var loader = new THREE.OBJLoader();
+				// 	loader.load("models/obj/car/Porsche_911_GT2.obj", function(object) {
+				// 		scene.add(object)
+				// 	})
+				var num = 0.005
+				var mtlLoader = new THREE.MTLLoader();
+					mtlLoader.setPath("models/obj/NYPD/");
+					mtlLoader.load("car.mtl", function(materials) {
+						materials.preload();
+						var objLoader = new THREE.OBJLoader();
+						objLoader.setMaterials(materials);
+						objLoader.setPath("models/obj/NYPD/");
+						objLoader.load("car.obj", function ( object ) {
+		                    object.scale.x = num;
+		                    object.scale.y = num;
+		                    object.scale.z = num;
+		                    // object.rotation.x = Math.PI / 180 * -90;
+		                    scene.add( object );
+						});
+
+					});
+
+				 // var loader = new THREE.FBXLoader();
+				 // 	 loader.load(aa, function(object) {
+					// 	scene.add(object)
+					// })
+			}
+			
+            // 动画
+			function animation () {
+				requestAnimationFrame( animation );
+				module.renderer.render(module.scene, module.camera);
+			};
+			animation ()
+			
+		</script>
+	</body>
+</html>
