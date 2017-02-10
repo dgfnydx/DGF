@@ -32,7 +32,7 @@
   float: none !important;
   height: auto !important;
   left: auto !important;
-  line-height: 1.1em !important;
+  line-height: 1.5em !important;
   margin: 0 !important;
   outline: 0 !important;
   overflow: visible !important;
@@ -69,7 +69,7 @@
   font-style: italic !important;
 }
 .syntaxhighlighter .line {
-  white-space: pre !important;
+  // white-space: pre !important;不自动换行
 }
 .syntaxhighlighter table {
   width: 100% !important;

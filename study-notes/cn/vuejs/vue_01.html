@@ -71,14 +71,9 @@
 								<div class="paragraph">
 									<p class="indent">采用简洁的模板语法来声明式的将数据渲染进 DOM 的系统</p>
 								</div>
-								<div class="code-type">HTML:</div>
+								<div class="code-type">例1HTML:</div>
 								<pre name="code" class="brush:xml">
 									&ltdiv id="app">{{ message }}&lt/div>
-								</pre>
-								<pre name="code" class="brush:xml">
-									&ltdiv id="app-2">
-									  	&ltspan v-bind:title="message">Hover your mouse over me for a few seconds to see my dynamically bound title!&lt/span>
-									&lt/div>
 								</pre>
 								<div class="code-type">JS:</div>
 								<pre id="code" name="code" class="brush:js">
@@ -89,6 +84,13 @@
 										}
 									})
 								</pre>
+								<div class="code-type">例2HTML:</div>
+								<pre name="code" class="brush:xml">
+									&ltdiv id="app-2">
+									  	&ltspan v-bind:title="message">Hover your mouse over me for a few seconds to see my dynamically bound title!&lt/span>
+									&lt/div>
+								</pre>
+								<div class="code-type">JS:</div>
 								<pre id="code" name="code" class="brush:js">
 									var app2 = new Vue({
 										el: '#app-2',
@@ -104,11 +106,46 @@
 						<div class="demos-content">
 							<div class="knowledge-point">
 								<h4 class="h4-title">上面代码运行效果：</h4>
+								<div class="code-type">例1：</div>
 								<div id="app">{{ message }}</div>
+								<div class="code-type">例2：</div>
 								<div id="app-2">
 								  	<span v-bind:title="message">
 								    Hover your mouse over me for a few seconds to see my dynamically bound title!
 								  	</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="notes n-dcom">
+						<div class="notes-content">
+							<div class="knowledge-point">
+								<h4 class="h4-title">条件与循环</h4>
+								<div class="code-type">例1HTML:</div>
+								<pre name="code" class="brush:xml">
+									&ltdiv id="app-3">
+									  &ltp v-if="seen">Now you see me&lt/p>
+									&lt/div>
+								</pre>
+								<div class="code-type">JS:</div>
+								<pre id="code" name="code" class="brush:js">
+									var app3 = new Vue({
+									    el: '#app-3',
+									    data: {
+									    	seen: true
+									  }
+									})
+								</pre>
+							</div>
+						</div>
+					</div>
+					<div class="demos n-dcom">
+						<div class="demos-content">
+							<div class="knowledge-point">
+								<h4 class="h4-title">上面代码运行效果：</h4>
+								<div class="code-type">例1：</div>
+								<div id="app-3">
+								    <p v-if="seen">Now you see me</p>
 								</div>
 							</div>
 						</div>
@@ -153,6 +190,13 @@
     		  data: {
     		    message: 'You loaded this page on ' + new Date()
     		  }
+    		})
+
+    		var app3 = new Vue({
+    			el: "#app-3",
+    			data: {
+    				seen: true
+    			}
     		})
     	})
 
