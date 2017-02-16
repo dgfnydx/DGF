@@ -22,15 +22,18 @@
         	font-size: 16px;
         }
         .table th:nth-child(1) {
-        	width: 25%;
+            width: 5%;
         }
         .table th:nth-child(2) {
-        	width: 15%;
+        	width: 20%;
         }
         .table th:nth-child(3) {
-        	width: 50%;
+        	width: 15%;
         }
         .table th:nth-child(4) {
+        	width: 50%;
+        }
+        .table th:nth-child(5) {
         	width: 10%;
         }
         .table td {
@@ -49,24 +52,29 @@
 					<div class="notes n-dcom">
 						<div class="notes-content">
 							<div class="knowledge-point">
-								<table class="table" border="1" id="tabs">
-									<thead>
-										<tr>
-											<th>选择器</th>
-											<th>例子</th>
-											<th>例子描述</th>
-											<th>CSS版本</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr v-for="selector in selectors">
-											<td>{{selector.selName}}</td>
-											<td>{{selector.demo}}</td>
-											<td>{{selector.decaration}}</td>
-											<td>{{selector.copyRight}}</td>
-										</tr>
-									</tbody>
-								</table>
+                                <div class="paragraph">
+                                    <p class="nindent">此表结合了Vue.js中v-for指令的运用</p>
+                                </div>
+                                <table class="table" border="1" id="tabs">
+                                    <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>选择器</th>
+                                            <th>例子</th>
+                                            <th>例子描述</th>
+                                            <th>CSS版本</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="selector in selectors">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{selector.selName}}</td>
+                                            <td>{{selector.demo}}</td>
+                                            <td>{{selector.decaration}}</td>
+                                            <td>{{selector.copyRight}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 							</div>
 						</div>
 					</div>
