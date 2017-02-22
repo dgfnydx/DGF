@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <link rel="icon" href="" type="image/x-icon">
     <link rel="stylesheet" href="../css/reset.css" type="text/css">
-    <link rel="stylesheet" href="../css/template.css" type="text/css">
+    <link rel="stylesheet" href="../css/template2.css" type="text/css">
     <link rel="stylesheet" href="../css/Vuejs-01.css" type="text/css">
     <link rel="stylesheet" href="../plug-in/syntaxhighlighter/css/shCoreMidnight.css" type="text/css">
     <style type="text/css">
@@ -19,308 +19,219 @@
 			<!-- 章 -->
 			<div class="section">
 				<h2 class="h2-title">JQ与JS等价代码</h2>
-				<div class="notes-type clearfix">
-					<div class="n-dcom">
-						<div class="title-style">
-							<h3 class="h3-title">知识点</h3>
-						</div>
-					</div>
-					<div class="n-dcom">
-						<div class="title-style">
-							<h3 class="h3-title">效果示例</h3>
-						</div>
-					</div>
-				</div>
 				<div class="study-content">
-					<div class="articl clearfix">
-						<div class="notes n-dcom">
-							<div class="notes-content">
-								<div class="knowledge-point">
-									<h4 class="h4-title">选择器</h4>
-									<div class="code-type">jquery和JavaScript代码:</div>
-									<pre name="code" class="brush:js">
-										//jquery
-										var els = $(".el");
+					<div class="notes n-dcom">
+						<div class="notes-content">
+							<div class="knowledge-point">
+								<h4 class="h4-title">选择器</h4>
+								<div class="code-type">jquery和JavaScript代码:</div>
+								<pre name="code" class="brush:js">
+									//jquery
+									var els = $(".el");
 
-										//原生方法
-										var els = document.querySelectorAll(".el");
+									//原生方法
+									var els = document.querySelectorAll(".el");
 
-										// 函数法  
-										var $ = function (el) {  
-										  return document.querySelectorAll(el);  
-										}  
-										  
-										var els = $('.el');
+									// 函数法  
+									var $ = function (el) {  
+									  return document.querySelectorAll(el);  
+									}  
+									  
+									var els = $('.el');
 
-										// 或者使用regex-based micro-selector库，地址：http://jsperf.com/micro-selector-libraries   
-									</pre>
-								</div>
-							</div>
-						</div>
-						<div class="demos n-dcom">
-							<div class="demos-content">
-								<div class="knowledge-point">没有示例</div>
+									// 或者使用regex-based micro-selector库，地址：http://jsperf.com/micro-selector-libraries   
+								</pre>
 							</div>
 						</div>
 					</div>
-					<div class="articl clearfix">
-						<div class="notes n-dcom">
-							<div class="notes-content">
-								<div class="knowledge-point">
-									<h4 class="h4-title">创建元素</h4>
-									<div class="code-type">jquery和JavaScript代码:</div>
-									<pre name="code" class="brush:js">
-										// jQuery  
-										var newEl = $('&ltdiv/>');  
-										  
-										// 原生方法  
-										var newEl = document.createElement('div');  
-									</pre>
-								</div>
-							</div>
-						</div>
-						<div class="demos n-dcom">
-							<div class="demos-content">
-								<div class="knowledge-point">没有示例</div>
+					<div class="notes n-dcom">
+						<div class="notes-content">
+							<div class="knowledge-point">
+								<h4 class="h4-title">创建元素</h4>
+								<div class="code-type">jquery和JavaScript代码:</div>
+								<pre name="code" class="brush:js">
+									// jQuery  
+									var newEl = $('&ltdiv/>');  
+									  
+									// 原生方法  
+									var newEl = document.createElement('div');  
+								</pre>
 							</div>
 						</div>
 					</div>
-					<div class="articl clearfix">
-						<div class="notes n-dcom">
-							<div class="notes-content">
-								<div class="knowledge-point">
-									<h4 class="h4-title">添加事件监听器</h4>
-									<div class="code-type">jquery和JavaScript代码:</div>
-									<pre name="code" class="brush:js">
-										// jQuery  
-										$('.el').on('event', function() {  
-										  
-										});  
-										  
-										// 原生方法  
-										[].forEach.call(document.querySelectorAll('.el'), function (el) {  
-										  el.addEventListener('event', function() {  
-										  
-										  }, false);  
-										});  
-									</pre>
-								</div>
-							</div>
-						</div>
-						<div class="demos n-dcom">
-							<div class="demos-content">
-								<div class="knowledge-point">没有示例</div>
+					<div class="notes n-dcom">
+						<div class="notes-content">
+							<div class="knowledge-point">
+								<h4 class="h4-title">添加事件监听器</h4>
+								<div class="code-type">jquery和JavaScript代码:</div>
+								<pre name="code" class="brush:js">
+									// jQuery  
+									$('.el').on('event', function() {  
+									  
+									});  
+									  
+									// 原生方法  
+									[].forEach.call(document.querySelectorAll('.el'), function (el) {  
+									  el.addEventListener('event', function() {  
+									  
+									  }, false);  
+									});  
+								</pre>
 							</div>
 						</div>
 					</div>
-					<div class="articl clearfix">
-						<div class="notes n-dcom">
-							<div class="notes-content">
-								<div class="knowledge-point">
-									<h4 class="h4-title">设置/获取属性 </h4>
-									<div class="code-type">jquery和JavaScript代码:</div>
-									<pre name="code" class="brush:js">
-										// jQuery  
-										$('.el').filter(':first').attr('key', 'value');  
-										$('.el').filter(':first').attr('key');  
-										  
-										// 原生方法  
-										document.querySelector('.el').setAttribute('key', 'value');  
-										document.querySelector('.el').getAttribute('key');
-									</pre>
-								</div>
-							</div>
-						</div>
-						<div class="demos n-dcom">
-							<div class="demos-content">
-								<div class="knowledge-point">没有示例</div>
+					<div class="notes n-dcom">
+						<div class="notes-content">
+							<div class="knowledge-point">
+								<h4 class="h4-title">设置/获取属性 </h4>
+								<div class="code-type">jquery和JavaScript代码:</div>
+								<pre name="code" class="brush:js">
+									// jQuery  
+									$('.el').filter(':first').attr('key', 'value');  
+									$('.el').filter(':first').attr('key');  
+									  
+									// 原生方法  
+									document.querySelector('.el').setAttribute('key', 'value');  
+									document.querySelector('.el').getAttribute('key');
+								</pre>
 							</div>
 						</div>
 					</div>
-					<div class="articl clearfix">
-						<div class="notes n-dcom">
-							<div class="notes-content">
-								<div class="knowledge-point">
-									<h4 class="h4-title">添加/移除/切换类</h4>
-									<div class="code-type">jquery和JavaScript代码:</div>
-									<pre name="code" class="brush:js">
-										// jQuery  
-										$('.el').addClass('class');  
-										$('.el').removeClass('class');  
-										$('.el').toggleClass('class');  
-										  
-										// 原生方法  
-										document.querySelector('.el').classList.add('class');  
-										document.querySelector('.el').classList.remove('class');  
-										document.querySelector('.el').classList.toggle('class');
-									</pre>
-								</div>
-							</div>
-						</div>
-						<div class="demos n-dcom">
-							<div class="demos-content">
-								<div class="knowledge-point">没有示例</div>
+					<div class="notes n-dcom">
+						<div class="notes-content">
+							<div class="knowledge-point">
+								<h4 class="h4-title">添加/移除/切换类</h4>
+								<div class="code-type">jquery和JavaScript代码:</div>
+								<pre name="code" class="brush:js">
+									// jQuery  
+									$('.el').addClass('class');  
+									$('.el').removeClass('class');  
+									$('.el').toggleClass('class');  
+									  
+									// 原生方法  
+									document.querySelector('.el').classList.add('class');  
+									document.querySelector('.el').classList.remove('class');  
+									document.querySelector('.el').classList.toggle('class');
+								</pre>
 							</div>
 						</div>
 					</div>
-					<div class="articl clearfix">
-						<div class="notes n-dcom">
-							<div class="notes-content">
-								<div class="knowledge-point">
-									<h4 class="h4-title">插入节点</h4>
-									<div class="code-type">jquery和JavaScript代码:</div>
-									<pre name="code" class="brush:js">
-										// jQuery  
-										$('.el').append($('&ltdiv/>'));  
-										  
-										// 原生方法  
-										document.querySelector('.el').appendChild(document.createElement('div'));
-									</pre>
-								</div>
-							</div>
-						</div>
-						<div class="demos n-dcom">
-							<div class="demos-content">
-								<div class="knowledge-point">没有示例</div>
+					<div class="notes n-dcom">
+						<div class="notes-content">
+							<div class="knowledge-point">
+								<h4 class="h4-title">插入节点</h4>
+								<div class="code-type">jquery和JavaScript代码:</div>
+								<pre name="code" class="brush:js">
+									// jQuery  
+									$('.el').append($('&ltdiv/>'));  
+									  
+									// 原生方法  
+									document.querySelector('.el').appendChild(document.createElement('div'));
+								</pre>
 							</div>
 						</div>
 					</div>
-					<div class="articl clearfix">
-						<div class="notes n-dcom">
-							<div class="notes-content">
-								<div class="knowledge-point">
-									<h4 class="h4-title">克隆节点</h4>
-									<div class="code-type">jquery和JavaScript代码:</div>
-									<pre name="code" class="brush:js">
-										// jQuery  
-										var clonedEl = $('.el').clone();  
-										  
-										// 原生方法  
-										var clonedEl = document.querySelector('.el').cloneNode(true); 
-									</pre>
-								</div>
-							</div>
-						</div>
-						<div class="demos n-dcom">
-							<div class="demos-content">
-								<div class="knowledge-point">没有示例</div>
+					<div class="notes n-dcom">
+						<div class="notes-content">
+							<div class="knowledge-point">
+								<h4 class="h4-title">克隆节点</h4>
+								<div class="code-type">jquery和JavaScript代码:</div>
+								<pre name="code" class="brush:js">
+									// jQuery  
+									var clonedEl = $('.el').clone();  
+									  
+									// 原生方法  
+									var clonedEl = document.querySelector('.el').cloneNode(true); 
+								</pre>
 							</div>
 						</div>
 					</div>
-					<div class="articl clearfix">
-						<div class="notes n-dcom">
-							<div class="notes-content">
-								<div class="knowledge-point">
-									<h4 class="h4-title">移除节点</h4>
-									<div class="code-type">jquery和JavaScript代码:</div>
-									<pre name="code" class="brush:js">
-										// jQuery  
-										$('.el').remove();  
+					<div class="notes n-dcom">
+						<div class="notes-content">
+							<div class="knowledge-point">
+								<h4 class="h4-title">移除节点</h4>
+								<div class="code-type">jquery和JavaScript代码:</div>
+								<pre name="code" class="brush:js">
+									// jQuery  
+									$('.el').remove();  
+									  
+									// 原生方法  
+									remove('.el');  
+									  
+									function remove(el) {  
+										var toRemove = document.querySelector(el);  
 										  
-										// 原生方法  
-										remove('.el');  
-										  
-										function remove(el) {  
-											var toRemove = document.querySelector(el);  
-											  
-											toRemove.parentNode.removeChild(toRemove);  
-										}  
-									</pre>
-								</div>
-							</div>
-						</div>
-						<div class="demos n-dcom">
-							<div class="demos-content">
-								<div class="knowledge-point">没有示例</div>
+										toRemove.parentNode.removeChild(toRemove);  
+									}  
+								</pre>
 							</div>
 						</div>
 					</div>
-					<div class="articl clearfix">
-						<div class="notes n-dcom">
-							<div class="notes-content">
-								<div class="knowledge-point">
-									<h4 class="h4-title">获取父元素</h4>
-									<div class="code-type">jquery和JavaScript代码:</div>
-									<pre name="code" class="brush:js">
-										// jQuery  
-										$('.el').parent();  
-										  
-										// 原生方法  
-										document.querySelector('.el').parentNode;  
-									</pre>
-								</div>
-							</div>
-						</div>
-						<div class="demos n-dcom">
-							<div class="demos-content">
-								<div class="knowledge-point">没有示例</div>
+					<div class="notes n-dcom">
+						<div class="notes-content">
+							<div class="knowledge-point">
+								<h4 class="h4-title">获取父元素</h4>
+								<div class="code-type">jquery和JavaScript代码:</div>
+								<pre name="code" class="brush:js">
+									// jQuery  
+									$('.el').parent();  
+									  
+									// 原生方法  
+									document.querySelector('.el').parentNode;  
+								</pre>
 							</div>
 						</div>
 					</div>
-					<div class="articl clearfix">
-						<div class="notes n-dcom">
-							<div class="notes-content">
-								<div class="knowledge-point">
-									<h4 class="h4-title">上一个/下一个元素 </h4>
-									<div class="code-type">jquery和JavaScript代码:</div>
-									<pre name="code" class="brush:js">
-										// jQuery  
-										$('.el').prev();  
-										$('.el').next();  
-										  
-										// 原生方法  
-										document.querySelector('.el').previousElementSibling;  
-										document.querySelector('.el').nextElementSibling; 
-									</pre>
-								</div>
-							</div>
-						</div>
-						<div class="demos n-dcom">
-							<div class="demos-content">
-								<div class="knowledge-point">没有示例</div>
+					<div class="notes n-dcom">
+						<div class="notes-content">
+							<div class="knowledge-point">
+								<h4 class="h4-title">上一个/下一个元素 </h4>
+								<div class="code-type">jquery和JavaScript代码:</div>
+								<pre name="code" class="brush:js">
+									// jQuery  
+									$('.el').prev();  
+									$('.el').next();  
+									  
+									// 原生方法  
+									document.querySelector('.el').previousElementSibling;  
+									document.querySelector('.el').nextElementSibling; 
+								</pre>
 							</div>
 						</div>
 					</div>
-					<div class="articl clearfix">
-						<div class="notes n-dcom">
-							<div class="notes-content">
-								<div class="knowledge-point">
-									<h4 class="h4-title">XHR或AJAX</h4>
-									<div class="code-type">jquery和JavaScript代码:</div>
-									<pre name="code" class="brush:js">
-										// jQuery  
-										$.get('url', function (data) {  
-										  
-										});  
-										$.post('url', {data: data}, function (data) {  
-										  
-										});  
-										  
-										// 原生方法  
-										// get  
-										var xhr = new XMLHttpRequest();  
-										  
-										xhr.open('GET', url);  
-										xhr.onreadystatechange = function (data) {  
-										  
-										}  
-										xhr.send();  
-										  
-										// post  
-										var xhr = new XMLHttpRequest()  
-										  
-										xhr.open('POST', url);  
-										xhr.onreadystatechange = function (data) {  
-										  
-										}  
-										xhr.send({data: data});  
-									</pre>
-								</div>
-							</div>
-						</div>
-						<div class="demos n-dcom">
-							<div class="demos-content">
-								<div class="knowledge-point">没有示例</div>
+					<div class="notes n-dcom">
+						<div class="notes-content">
+							<div class="knowledge-point">
+								<h4 class="h4-title">XHR或AJAX</h4>
+								<div class="code-type">jquery和JavaScript代码:</div>
+								<pre name="code" class="brush:js">
+									// jQuery  
+									$.get('url', function (data) {  
+									  
+									});  
+									$.post('url', {data: data}, function (data) {  
+									  
+									});  
+									  
+									// 原生方法  
+									// get  
+									var xhr = new XMLHttpRequest();  
+									  
+									xhr.open('GET', url);  
+									xhr.onreadystatechange = function (data) {  
+									  
+									}  
+									xhr.send();  
+									  
+									// post  
+									var xhr = new XMLHttpRequest()  
+									  
+									xhr.open('POST', url);  
+									xhr.onreadystatechange = function (data) {  
+									  
+									}  
+									xhr.send({data: data});  
+								</pre>
 							</div>
 						</div>
 					</div>
