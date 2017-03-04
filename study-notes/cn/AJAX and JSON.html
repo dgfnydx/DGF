@@ -15,6 +15,24 @@
         	height: 30px;
         	border-radius: 5px;
         }
+        .table {
+        	width: 80%;
+        	margin: 0 auto;
+        	border: 1px solid white;
+        }
+        .table tr {
+        	height: 30px;
+        }
+        .table th,
+        .table td {
+        	text-align: center;
+        }
+        .table th {
+        	font-size: 16px;
+        }
+        .table td {
+        	font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -55,6 +73,7 @@
 						<div class="notes-content">
 							<div class="knowledge-point">
 								<h4 class="h4-title">步骤</h4>
+								<div class="code-type">原生JavaScript:</div>
 								<pre id="code" name="code" class="brush:js">
 									var xhr = new XMLHttpRequest(); // 创建一个ajax对象
 										xhr.open("get", "http://www.baidu.com", true); //确定即将连接的网址及方式 method：String，采用post/get形式请求; url：String，要连接的网址; asyn：Boolean，是否发起异步请求
@@ -63,6 +82,16 @@
 											console.log("成功")
 											console.log(xhr.responseText) // 服务器返回的数据，请求之前为空(返回的是string)
 										}
+								</pre>
+								<div class="code-type">jQuery:</div>
+								<pre id="code" name="code" class="brush:js">
+									$ajax({
+										type: "get",
+										url: "../data/test.txt",
+										success: function(data) {
+											console.log(data)
+										}
+									})
 								</pre>
 							</div>
 						</div>
@@ -73,6 +102,31 @@
 								<h4 class="h4-title">demo:</h4>
 								<button class="btn">加载text</button>
 								<div class="show-text"></div>
+							</div>
+						</div>
+					</div>
+					<div class="notes n-dcom">
+						<div class="notes-content">
+							<div class="knowledge-point">
+								<h4 class="h4-title">$ajax(options)的参数</h4>
+								<table border="1" class="table">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>参数名称</th>
+											<th>类型</th>
+											<th>说明</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr v-for="option in options">
+											<td>{{$index+1}}</td>
+											<td>{{option.name}}</td>
+											<td>{{option.type}}</td>
+											<td>{{option.explain}}</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -243,7 +297,48 @@
 	 		var vm = new Vue({
 	 			el: "#htmls",
 	 			data: {
-	 				title1: "AJAX及JSON"
+	 				title1: "AJAX及JSON",
+	 				options: [{
+	 					name: "url",
+	 					type: "string",
+	 					explain: "发送请求的url"
+	 				},{
+	 					name: "type",
+	 					type: "string",
+	 					explain: "'get'或'post'"
+	 				},{
+	 					name: "success",
+	 					type: "function",
+	 					explain: "请求成功后的回调函数"
+	 				},{
+	 					name: "data",
+	 					type: "string或object",
+	 					explain: "要发送给服务器的数据。如：'name=aa&age=11'或者{name:'aa',age:'11'}"
+	 				},{
+	 					name: "timeout",
+	 					type: "number",
+	 					explain: "请求超时时间（毫秒）"
+	 				},{
+	 					name: "dataType",
+	 					type: "string",
+	 					explain: "服务器返回的数据类型。如果是特殊的格式JQ会进行预解析和兼容性修复。可选值：'xml','html','script','json','jsonp','text'"
+	 				},{
+	 					name: "beforeSend",
+	 					type: "function",
+	 					explain: "在发送请求前，可以添加自定义头部信息等操作。如：function(xhr){xhr;//XMLHttpRequest对象}"
+	 				},{
+	 					name: "complete",
+	 					type: "function",
+	 					explain: "ajax请求完成后的回调函数，无论成功与失败"
+	 				},{
+	 					name: "error",
+	 					type: "function",
+	 					explain: "失败的回调函数"
+	 				},{
+	 					name: "global",
+	 					type: "boolean",
+	 					explain: "是否触发全局的ajax事件"
+	 				}]
 	 			}
 	 		})
 	 	})();
