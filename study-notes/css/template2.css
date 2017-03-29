@@ -105,3 +105,9 @@
   padding: 5px 0;
   color: blue;
 }
+
+@media screen and (max-width: 770px) {
+  .main {
+    width: 96%;
+  }
+}
