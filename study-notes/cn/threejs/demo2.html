@@ -58,6 +58,37 @@
 					this.cube = new THREE.Mesh( this.geometry, this.material );
 					this.scene.add( this.cube );
 				},
+				initModel: function() {
+					var _this = this;
+					var mtlLoader = new THREE.MTLLoader();
+						mtlLoader.setPath("../../model/Spiderman/");
+						mtlLoader.load("Spiderman.mtl", function(materials) {
+							materials.preload();
+							var objLoader = new THREE.OBJLoader();
+							objLoader.setMaterials(materials);
+							objLoader.setPath("../../model/Spiderman/");
+							objLoader.load("Spiderman.obj", function ( object ) {
+								var objs = object.children[0];
+								    objs.geometry.computeBoundingBox();
+								var maxX = objs.geometry.boundingBox.max.x,
+								    minX = objs.geometry.boundingBox.min.x,
+								    maxY = objs.geometry.boundingBox.max.y,
+								    minY = objs.geometry.boundingBox.min.y,
+								    maxZ = objs.geometry.boundingBox.max.z,
+								    minZ = objs.geometry.boundingBox.min.z,
+								    maxDis = Math.sqrt((maxX - minX) * (maxX - minX) + (maxY - minY) * (maxY - minY) + (maxZ - minZ) * (maxZ - minZ)) / 2,
+								    scale = (1.5 / maxDis).toFixed(2);
+								    objs.scale.multiplyScalar(scale);
+								    objs.rotation.y = 90 * Math.PI / 180;
+			                    // object.scale.x = num;
+			                    // object.scale.y = num;
+			                    // object.scale.z = num;
+			                    // object.rotation.x = Math.PI / 180 * -90;
+			                    _this.scene.add( objs );
+							});
+
+						});
+				},
 				// 网格
 				initGrid: function() {
 					this.gridHelper = new THREE.GridHelper(2, 50, 0xff00ff, 0x808080);
@@ -78,11 +109,11 @@
 					this.initScene();
 					this.initCamera();
 					this.initRenderer();	
-					this.initCube();
-					// initModel()	
+					// this.initCube();
+					this.initModel()	
 					this.initLight();
 					this.initCtr();
-					// this.initGrid();
+					this.initGrid();
 				}
 			}
 			module.start()
