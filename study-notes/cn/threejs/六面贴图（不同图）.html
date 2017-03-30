@@ -169,7 +169,7 @@
 			// 相机
 			initCamera: function() {
 				// 透视相机
-				this.camera = new THREE.PerspectiveCamera( 45, this.container.offsetWidth/this.container.offsetHeight, 1, 10000 );
+				this.camera = new THREE.PerspectiveCamera( 45, this.container.offsetWidth / this.container.offsetHeight, 1, 10000 );
 				// 设置相机的坐标
 				// this.camera.position.y = 5;
 				// this.camera.position.z = 5;
@@ -230,6 +230,11 @@
 				this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
 				this.controls.dampingFactor = 0.25;
 			},
+			onWindowResize: function() {
+				module.camera.aspect = module.container.offsetWidth / module.container.offsetHeight;
+				module.camera.updateProjectionMatrix();
+				module.renderer.setSize(module.container.offsetWidth, module.container.offsetHeight)
+			},
 			start: function() {
 				this.initScene();
 				this.initCamera();
@@ -237,7 +242,9 @@
 				this.initCube();
 				this.initLight();
 				this.initCtr();
+				// this.onWindowResiz();
 				// this.initGrid();
+				window.addEventListener( 'resize', module.onWindowResize, false );
 			}
 		}
 		// 动画
@@ -245,10 +252,15 @@
 			requestAnimationFrame( animation );
 			module.renderer.render(module.scene, module.camera);
 		};
+		// 监听窗口变化
+		function onWindowResize() {
+			module.camera.aspect = module.container.offsetWidth / module.container.offsetHeight;
+			module.camera.updateProjectionMatrix();
+			module.renderer.setSize(module.container.offsetWidth, module.container.offsetHeight)
+		}
 		// 执行
 		module.start()
 		animation ()
-
     </script>
 </body>
 </html>
