@@ -185,7 +185,8 @@
 			// 物体
 			initCube: function() {
 				this.geometry = new THREE.BoxGeometry( 3, 3, 3,2,2,2 );//(width, height, dept, widthSegments, heightSegments, depthSegments)
-				var crateTexture = new THREE.ImageUtils.loadTexture("../../images/demo/jingtian2.jpg"); 
+				// var crateTexture = new THREE.ImageUtils.loadTexture("../../images/demo/jingtian2.jpg"); //new THREE.ImageUtils.loadTexture弃用
+				var crateTexture = new THREE.TextureLoader().load("../../images/demo/jingtian2.jpg"); 
 				this.material = new THREE.MeshBasicMaterial({//基本材质
 					// color: 0xff0000,
 					map: crateTexture,
