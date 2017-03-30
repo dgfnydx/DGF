@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>加载3D模型</title>
+    <title>六面贴图</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <link rel="icon" href="" type="image/x-icon">
     <link rel="stylesheet" href="../../css/reset.css" type="text/css">
@@ -21,12 +21,12 @@
 		<div class="main">
 			<!-- 章 -->
 			<div class="section">
-				<h2 class="h2-title">加载3D模型</h2>
+				<h2 class="h2-title">六面贴图</h2>
 				<div class="study-content">
 					<div class="notes n-dcom">
 						<div class="notes-content">
 							<div class="knowledge-point">
-								<h4 class="h4-title">加载3D模型</h4>
+								<h4 class="h4-title">六面贴图</h4>
 								<div class="code-type">HTML代码:</div>
 								<pre name="code" class="brush:xml">
 									&ltdiv id="model">&lt/div>
@@ -64,32 +64,20 @@
 											this.renderer.setClearColor(0xffffff, 1);//(原色，透明度)
 											this.container.appendChild( this.renderer.domElement );
 										},
-										initModel: function() {
-											var _this = this;
-											var mtlLoader = new THREE.MTLLoader();
-												mtlLoader.setPath("../../model/Spiderman/");
-												mtlLoader.load("Spiderman.mtl", function(materials) {
-													materials.preload();
-													var objLoader = new THREE.OBJLoader();
-													objLoader.setMaterials(materials);
-													objLoader.setPath("../../model/Spiderman/");
-													objLoader.load("Spiderman.obj", function ( object ) {
-														var objs = object.children[0];
-														    objs.geometry.computeBoundingBox();
-														var maxX = objs.geometry.boundingBox.max.x,
-														    minX = objs.geometry.boundingBox.min.x,
-														    maxY = objs.geometry.boundingBox.max.y,
-														    minY = objs.geometry.boundingBox.min.y,
-														    maxZ = objs.geometry.boundingBox.max.z,
-														    minZ = objs.geometry.boundingBox.min.z,
-														    maxDis = Math.sqrt((maxX - minX) * (maxX - minX) + (maxY - minY) * (maxY - minY) + (maxZ - minZ) * (maxZ - minZ)) / 2,
-														    scale = (1.5 / maxDis).toFixed(2);
-														    objs.scale.multiplyScalar(scale);
-														    objs.rotation.y = 90 * Math.PI / 180;
-									                    _this.scene.add( objs );
-													});
-
-												});
+										// 物体
+										initCube: function() {
+											this.geometry = new THREE.BoxGeometry( 3, 3, 3,2,2,2 );//(width, height, dept, widthSegments, heightSegments, depthSegments)
+											var crateTexture = new THREE.ImageUtils.loadTexture("../../images/demo/jingtian2.jpg"); 
+											this.material = new THREE.MeshBasicMaterial({//基本材质
+												// color: 0xff0000,
+												map: crateTexture,
+												wireframe : false//wireframe线模式渲染
+											});
+											// this.material = new THREE.MeshNormalMaterial({此材质根据物体表面法向量计算颜色
+											// 	wireframe : false//wireframe线模式渲染
+											// });
+											this.cube = new THREE.Mesh( this.geometry, this.material );
+											this.scene.add( this.cube );
 										},
 										// 网格
 										initGrid: function() {
@@ -111,10 +99,11 @@
 											this.initScene();
 											this.initCamera();
 											this.initRenderer();	
-											this.initModel();
+											this.initCube();
+											// initModel()	
 											this.initLight();
 											this.initCtr();
-											this.initGrid();
+											// this.initGrid();
 										}
 									}
 									module.start()
@@ -149,8 +138,6 @@
     <script charset="utf-8" src="../../plug-in/syntaxhighlighter/shAutoloader.js" type="text/javascript"></script>
     <script charset="utf-8" src="../../js/three/three.js" type="text/javascript"></script>
     <script charset="utf-8" src="../../js/three/controls/OrbitControls.js" type="text/javascript"></script>
-    <script charset="utf-8" src="../../js/three/loader/MTLLoader.js" type="text/javascript"></script>
-    <script charset="utf-8" src="../../js/three/loader/OBJLoader.js" type="text/javascript"></script>
     <script type="text/javascript">
 	 	SyntaxHighlighter.autoloader(
 			['js','jscript','javascript','../../plug-in/syntaxhighlighter/js/shBrushJScript.js'],
@@ -195,32 +182,37 @@
 				this.renderer.setClearColor(0xffffff, 1);//(原色，透明度)
 				this.container.appendChild( this.renderer.domElement );
 			},
-			initModel: function() {
-				var _this = this;
-				var mtlLoader = new THREE.MTLLoader();
-					mtlLoader.setPath("../../model/Spiderman/");
-					mtlLoader.load("Spiderman.mtl", function(materials) {
-						materials.preload();
-						var objLoader = new THREE.OBJLoader();
-						objLoader.setMaterials(materials);
-						objLoader.setPath("../../model/Spiderman/");
-						objLoader.load("Spiderman.obj", function ( object ) {
-							var objs = object.children[0];
-							    objs.geometry.computeBoundingBox();
-							var maxX = objs.geometry.boundingBox.max.x,
-							    minX = objs.geometry.boundingBox.min.x,
-							    maxY = objs.geometry.boundingBox.max.y,
-							    minY = objs.geometry.boundingBox.min.y,
-							    maxZ = objs.geometry.boundingBox.max.z,
-							    minZ = objs.geometry.boundingBox.min.z,
-							    maxDis = Math.sqrt((maxX - minX) * (maxX - minX) + (maxY - minY) * (maxY - minY) + (maxZ - minZ) * (maxZ - minZ)) / 2,
-							    scale = (1.5 / maxDis).toFixed(2);
-							    objs.scale.multiplyScalar(scale);
-							    objs.rotation.y = 90 * Math.PI / 180;
-		                    	_this.scene.add( objs );
-						});
-
-					});
+			// 物体
+			initCube: function() {
+				var loader = new THREE.TextureLoader();
+				var gardenMaterials  = [
+					"../../images/demo/jingtian1.jpg",
+					"../../images/demo/jingtian2.jpg",
+					"../../images/demo/liruotong1.jpg",
+					"../../images/demo/liruotong2.jpg",
+					"../../images/demo/liruotong3.jpg",
+					"../../images/demo/liruotong4.jpg"
+				]
+				Promise.all(gardenMaterials.map(function (val) {
+				    //加载图片, 新建材质, 传给下一个步骤.
+				    return new Promise(function (resolve, reject) {
+				        loader.load(val, function (texture) {
+				            resolve(new THREE.MeshBasicMaterial({
+				                map: texture,
+				                side: THREE.FrontSide//THREE.FrontSide 正面，THREE.BackSide 反面，THREE.DoubleSide 双面
+				            }));
+				        });
+				    });
+				})).then(function (materials) {
+				    //将材质贴到正方体的6个面.
+				    this.geometry = new THREE.BoxGeometry(2, 2, 2);
+				    cube = new THREE.Mesh(
+				        this.geometry,
+				        //new THREE.MeshFaceMaterial(materials)//MeshFaceMaterial已经更名为MultiMaterial
+				        new THREE.MultiMaterial(materials)
+				    );
+				    module.scene.add(cube);
+				});
 			},
 			// 网格
 			initGrid: function() {
@@ -242,18 +234,19 @@
 				this.initScene();
 				this.initCamera();
 				this.initRenderer();	
-				this.initModel();
+				this.initCube();
 				this.initLight();
 				this.initCtr();
-				this.initGrid();
+				// this.initGrid();
 			}
 		}
-		module.start()
 		// 动画
 		function animation () {
 			requestAnimationFrame( animation );
 			module.renderer.render(module.scene, module.camera);
 		};
+		// 执行
+		module.start()
 		animation ()
 
     </script>
