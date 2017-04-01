@@ -149,6 +149,7 @@
     <script charset="utf-8" src="../../plug-in/syntaxhighlighter/shAutoloader.js" type="text/javascript"></script>
     <script charset="utf-8" src="../../js/three/three.js" type="text/javascript"></script>
     <script charset="utf-8" src="../../js/three/controls/OrbitControls.js" type="text/javascript"></script>
+    <script charset="utf-8" src="../../js/three/controls/TransformControls.js" type="text/javascript"></script>
     <script charset="utf-8" src="../../js/three/loader/MTLLoader.js" type="text/javascript"></script>
     <script charset="utf-8" src="../../js/three/loader/OBJLoader.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -174,6 +175,10 @@
 			gridHelper: null,
 			light: null,
 			controls: null,
+			transControl: null,
+			mouse: null,
+			raycaster: null,
+			objsarr: [],
 			container: document.getElementById("model"),//容器
 			// 场景
 			initScene: function() {
@@ -186,7 +191,7 @@
 				// 设置相机的坐标
 				// this.camera.position.y = 5;
 				// this.camera.position.z = 5;
-				this.camera.position.set(5, 5, 0)
+				this.camera.position.set(0, 5, 5)
 			},
 			// 渲染器
 			initRenderer: function() {
@@ -206,7 +211,7 @@
 						objLoader.setPath("../../model/Spiderman/");
 						objLoader.load("Spiderman.obj", function ( object ) {
 							var objs = object.children[0];
-							    objs.geometry.computeBoundingBox();
+								objs.geometry.computeBoundingBox();
 							var maxX = objs.geometry.boundingBox.max.x,
 							    minX = objs.geometry.boundingBox.min.x,
 							    maxY = objs.geometry.boundingBox.max.y,
@@ -216,8 +221,9 @@
 							    maxDis = Math.sqrt((maxX - minX) * (maxX - minX) + (maxY - minY) * (maxY - minY) + (maxZ - minZ) * (maxZ - minZ)) / 2,
 							    scale = (1.5 / maxDis).toFixed(2);
 							    objs.scale.multiplyScalar(scale);
-							    objs.rotation.y = 90 * Math.PI / 180;
+							    // objs.rotation.y = 90 * Math.PI / 180;
 		                    	_this.scene.add( objs );
+		                    	_this.objsarr.push(objs)
 						});
 
 					});
@@ -237,6 +243,34 @@
 			initCtr: function() {
 				this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
 				this.controls.dampingFactor = 0.25;
+				//移动 缩放 旋转控制器
+				this.transControl = new THREE.TransformControls( this.camera, this.renderer.domElement );
+				// this.transControl.size = 1;//尺寸
+				this.scene.add(this.transControl);
+			},
+			// 射线
+			radial: function() {
+				this.raycaster = new THREE.Raycaster();  
+				this.mouse = new THREE.Vector2(); 
+				window.addEventListener("click", module.getSize, false) 
+			},
+			getSize: function(event) {
+				event.preventDefault();
+				var clientX = event.clientX - module.container.offsetLeft
+				var clientY = event.clientY - module.container.offsetTop + document.body.scrollTop
+				// module.mouse.x = (clientX / module.container.offsetWidth) * 2 - 1;  
+    //             module.mouse.y = -(clientY / module.container.offsetHeight) * 2 + 1;  
+
+    			module.mouse.x = (clientX / module.renderer.domElement.clientWidth) * 2 - 1;  
+                module.mouse.y = -(clientY / module.renderer.domElement.clientHeight) * 2 + 1;
+                module.raycaster.setFromCamera(module.mouse, module.camera);
+				var intersects = module.raycaster.intersectObjects(module.objsarr);
+				if(intersects.length > 0) {
+					var INTERSECTED = intersects[0].object
+					module.transControl.attach(INTERSECTED)
+				} else {
+					module.transControl.detach(INTERSECTED)
+				}
 			},
 			start: function() {
 				this.initScene();
@@ -246,6 +280,8 @@
 				this.initLight();
 				this.initCtr();
 				this.initGrid();
+				this.radial();
+				// this.intersect();
 			}
 		}
 		module.start()
@@ -255,7 +291,7 @@
 			module.renderer.render(module.scene, module.camera);
 		};
 		animation ()
-
+		
     </script>
 </body>
 </html>
