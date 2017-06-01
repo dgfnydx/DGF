@@ -14,17 +14,48 @@
 /*颜色变量*/
 /*全局边框颜色*/
 /*字体大小*/
-.main {
+.head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(34, 34, 34, 0.5);
+}
+.con {
   width: 70%;
   margin: 0 auto;
+}
+.logo, .nav {
+  float: left;
+}
+.nav a {
+  display: block;
+  height: 85px;
+  line-height: 85px;
+  color: white;
+  font-size: 18px;
+}
+.foot {
+  padding: 10px;
+  background: rgba(34, 34, 34, 0.5);
+}
+.foot ul {
+ width: 70%;
+ margin: 0 auto;
+ color: white;
+ text-align: center;
+}
+.main {
+  width: 70%;
+  margin: 85px auto 0;
   /*border: $fourBorder;*/
-  border: 1px solid red;
+  border: 1px solid rgba(34, 34, 34, 0.5);
 }
 
 .h2-title {
   margin-bottom: 10px;
   padding: 10px;
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid rgba(34, 34, 34, 0.5);
   font-size: 24px;
   text-align: center;
 }

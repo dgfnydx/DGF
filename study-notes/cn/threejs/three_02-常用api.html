@@ -27,17 +27,21 @@
 						<div class="notes-content">
 							<div class="knowledge-point">
 								<pre name="code" class="brush:js">
-							    	/*** 场景（scene） ***/
+									/**
+									 * 场景（scene）
+									 */
 							    	var scene = new THREE.Scene(); // 创建场景
 							    	scene.add(x);                  // 插入场景
-
-							    	/*** 相机（camera） ***/
+									/**
+									 * 相机（camera）
+									 */
 							    	// 正交投影相机
 							    	var camera = new THREE.OrthographicCamera(left, right, top, bottom, near, far);
 							    	// 透视头像相机
 							    	var camera = new THREE.PerspectiveCamera(fov, aspect, near, far); // fov：人眼夹角，aspect：长宽比
-
-							    	/*** 渲染器（renderer） ***/
+									/**
+									 * 渲染器（renderer）
+									 */
 							    	var renderer = new THREE.WebGLRenderer(options);
 							    	// options {} 可选。参数：
 							    	// canvas：element <canvas></canvas>
@@ -46,14 +50,16 @@
 							    	renderer.setClearColor(color, opacity);   // 设置清除后的颜色 16进制
 							    	renderer.clear();                         // 清除面板
 							    	renderer.render(scene, camera);           // 渲染
-
-							    	/*** 光照(light) ***/
+									/**
+									 * 光照(light)
+									 */
 							    	new THREE.AmbientLight(颜色);                          // 环境光
 							    	new THREE.PointLight(颜色, 强度, 距离);                // 点光源
 							    	new THREE.DirectionalLight(颜色, 亮度);                // 平行光
 							    	new THREE.SpotLight(颜色, 强度, 距离, 夹角, 衰减指数); // 聚光灯
-
-							    	/*** 几何形状 ***/
+									/**
+									 * 几何形状
+									 */
 							    	new THREE.CubeGeometry(长, 宽, 高, 长的分割, 宽的分割, 高的分割);                           // 立方体
 							    	new THREE.PlanGeometry(长,宽, 长的分割, 宽的分割);                                          // 平面
 							    	new THREE.SphereGeometry(半径, 经度切片, 纬度分割, 经度分割, 经度跨过, 纬度开始, 纬度跨过); // 球体
@@ -67,8 +73,9 @@
 							    	var geometry = new THREE.Geometry();
 							    	geometry.vertices.push(new THREE.Vectory3(x, y, z)); // 点，其中x、y、z为坐标
 							    	geometry.faces.push(new THREE.Faces3(x, y, z));      // 面，其中x、y、z为点的数组的索引，三点确定一个面
-
-							    	/*** 材质 ***/
+							    	/**
+									 * 材质
+									 */
 							    	new THREE.MeshBasicMaterial(options); // 基本材质
 							    	// options {} 可选。参数：
 							    	//   visible：是否可见
@@ -86,20 +93,23 @@
 							    	new THREE.MeshDepthMaterial()：//根据网格到相机的距离，该材质决定如何给网格染色
 							    	new THREE.MeshNormalMaterial()：//方向材质，根据物体表面的法向量计算颜色 
 							    	new THREE.MeshFaceMaterial() // 设置不同面的贴图，参数为单个贴图的数组
-
-							    	/* 贴图 */
+							    	/**
+									 * 贴图
+									 */
 							    	var texture = new THREE.TextureLoader().load(url); 
 							    	texture.wrapS texture.wrapT = THREE.RepeatWrapping // 贴图的重复方式
 							    	texture.repeat.set(x, y)     // 重复次数
 							    	new THREE.texture(canvas)    // 将canvas作为贴图
-
-							    	/*** 将模型和贴图结合 ***/
+							    	/**
+									 * 模型贴图结合
+									 */
 							    	var mesh = new THREE.Mesh(形状, 材质);
 							    	mesh.position // 位置 mesh.position.x（y、z） 或 mesh.position.set(x, y, z)
 							    	mesh.scale    // 缩放
 							    	mesh.rotation // 旋转
-
-							    	/*** 监视FPS ***/
+							    	/**
+									 * 状态监视PFS
+									 */
 							    	var stats = new Stats();
 							    	stats.domElement // 节点
 							    	stats.begin()    // 开始
@@ -133,6 +143,7 @@
 		SyntaxHighlighter.defaults['collapse'] = false;//是否折叠代码
 		// SyntaxHighlighter.defaults['highlight'] = 1;//标记重要的行
 		SyntaxHighlighter.all();//这里的‘code’ 为上面放置代码的容器 
+		
     </script>
 </body>
 </html>
