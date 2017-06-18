@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算器</title>
+</head>
+<body>
+	<div>请输入十进制数</div>
+	<input type="text" id="d">
+	<button id="btn">计算</button>
+	<div>
+		<span>二进制数为：</span>
+		<strong id="val"></strong>
+	</div>
+	<div>请输入二进制数</div>
+	<input type="text" id="b">
+	<button id="bbtn">计算</button>
+	<div>
+		<span>二进制数为：</span>
+		<strong id="bval"></strong>
+	</div>
+	<script>
+		var d = document.getElementById("d");
+		var b = document.getElementById("b");
+		var btn = document.getElementById("btn");
+		var bbtn = document.getElementById("bbtn");
+		var val = document.getElementById("val")
+		var bval = document.getElementById("bval")
+		btn.onclick = function() {
+			var dd = d.value - 0;//字符串转换成数字（隐式转换）
+			var bd = dd.toString(2)//转换成二进制数
+			val.innerHTML = bd;
+		}
+		bbtn.onclick = function() {
+			var bd = b.value;
+			var db = parseInt(bd ,2)
+			bval.innerHTML = db;
+		}
+	</script>
+</body>
+</html>
