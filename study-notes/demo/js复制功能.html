@@ -36,19 +36,19 @@
         cc.onclick = function() {
         	// var text=this;
 			if (document.body.createTextRange) {
-			        var range = document.body.createTextRange();
-			        range.moveToElementText(this);
-			        range.select();
-			    } else if (window.getSelection) {
-			        var selection = window.getSelection();
-			        var range = document.createRange();
-			        range.selectNodeContents(this);
-			        selection.removeAllRanges();
-			        selection.addRange(range);
-			     
-			    } else {
-			        alert("none");
-			    }
+		        var range = document.body.createTextRange();
+		        range.moveToElementText(this);
+		        range.select();
+		    } else if (window.getSelection) {
+		        var selection = window.getSelection();
+		        var range = document.createRange();
+		        range.selectNodeContents(this);
+		        selection.removeAllRanges();
+		        selection.addRange(range);
+		     
+		    } else {
+		        alert("none");
+		    }
         }
     </script>
 </body>
