@@ -14,6 +14,7 @@
 		<textarea cols="20" rows="10" id="biao1">用户定义的代码区域</textarea>
 		<input type="button" onClick="copyUrl2()" value="点击复制代码" />
 		<div id="aa">我是div，点击我可以选中内容</div>
+        <p>这段文字复制后自带版权信息哦！</p>
    	</div>
     <script charset="utf-8" src="" type="text/javascript"></script>
     <script type="text/javascript">
@@ -45,11 +46,58 @@
 		        range.selectNodeContents(this);
 		        selection.removeAllRanges();
 		        selection.addRange(range);
-		     
+                console.log(selection)
 		    } else {
 		        alert("none");
 		    }
+            document.execCommand("Copy");
         }
+
+        // 复制自动添加版权信息方法一
+        
+        // function addLink() {
+        //     var selection = window.getSelection();
+        //     pagelink = ". 原文出自[知更鸟] 转载请保留原文链接: " + document.location.href;
+        //     copytext = selection + pagelink;
+        //     newdiv = document.createElement('div');
+        //     newdiv.style.position = 'absolute';
+        //     newdiv.style.left = '-99999px';
+        //     document.body.appendChild(newdiv);
+        //     newdiv.innerHTML = copytext;
+        //     selection.selectAllChildren(newdiv);
+        //     window.setTimeout(function () {
+        //         document.body.removeChild(newdiv);
+        //     }, 100);
+        // }
+        // document.oncopy = addLink;
+
+        // 复制自动添加版权信息方法二
+        function addLink() {
+            var body_element = document.body;
+            var selection= window.getSelection();
+            if (window.clipboardData) { // Internet Explorer
+                var pagelink ="\r\n\r\n 原文出自[ 知更鸟 ] 转载请保留原文链接: "+document.location.href+"";
+                var copytext = selection + pagelink;
+                window.clipboardData.setData ("Text", copytext);
+                return false;
+            } else {
+                var pagelink = " 原文出自[ 富录 ] 转载请保留原文链接: "+document.location.href+"";
+                var copytext = selection + pagelink;
+                var newdiv = document.createElement('div');
+                newdiv.style.position='absolute';
+                newdiv.style.left='-99999px';
+                body_element.appendChild(newdiv);
+                newdiv.innerHTML = copytext;
+                selection.selectAllChildren(newdiv);
+                window.setTimeout(function() {
+                body_element.removeChild(newdiv);
+                },0);
+                console.log(selection)
+            }
+        }
+        window.onload = addLink;
+
+
     </script>
 </body>
 </html>
