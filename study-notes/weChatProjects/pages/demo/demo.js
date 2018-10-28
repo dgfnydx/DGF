@@ -6,8 +6,9 @@ Page({
    */
   data: {
     imgUrls: [
-      '../../images/demo/11272009232.jpg',
-      '../../images/demo/20100403653.jpg'
+      '../../images/demo/banner_01.jpg',
+      '../../images/demo/banner_02.jpg',
+      '../../images/demo/banner_03.jpg'
     ],
     indicatorDots: false,
     autoplay: true,
@@ -16,12 +17,15 @@ Page({
     duration: 1000
 
   },
-
+  clickMe: function() {
+        this.setData({msg: "hello world"})
+    },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // this.setData({msg: "hello"})
 
   },
 

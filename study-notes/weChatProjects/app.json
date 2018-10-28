@@ -16,14 +16,17 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "images/nav10.png"
+        "iconPath": "images/home_page.png",
+        "selectedIconPath": "images/home_page_blue.png"
       },
       {
         "pagePath": "pages/logs/logs",
         "text": "日志",
-        "iconPath": "images/nav8.png"
+        "iconPath": "images/community.png",
+        "selectedIconPath": "images/community_blue.png"
       }
     ]
   }
+  
   
 }

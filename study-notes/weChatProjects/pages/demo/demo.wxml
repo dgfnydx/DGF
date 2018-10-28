@@ -2,8 +2,12 @@
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-dots="{{indicator}}">
   <block wx:for="{{imgUrls}}">
     <swiper-item>
-      <image src="{{item}}" class="slide-image" width="355" height="150"/>
+      <image src="{{item}}" class="slide-image"/>
     </swiper-item>
   </block>
 </swiper>
+<view>{{msg}}</view>
+<button bindtap="clickMe">点击我</button>
+<map></map>
+
 <!-- https://www.cnblogs.com/gavinjay/p/8582137.html -->
